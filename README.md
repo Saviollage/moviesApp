@@ -2,7 +2,18 @@
 
 App consumindo a api TheMovieDB para listagem de filmes populares.
 
-![](screens/3.gif)
+<div style="text-align: center"><table><tr>
+  <td style="text-align: center">
+    <img src="screens/4.gif" width="400"/>
+</td>
+  <td style="text-align: center">
+    <img src="screens/1.png" width="400"/>
+</td>
+  <td style="text-align: center">
+    <img src="screens/2.png" width="400"/>
+</td>
+  
+</tr></table></div>
 
 
 Para este exemplo utilizamos alguns temas importantes do *Flutter*, como por exemplo: 
@@ -12,7 +23,7 @@ Para este exemplo utilizamos alguns temas importantes do *Flutter*, como por exe
 - Tratamento de JSON
 - Custom Painting
 
-![](screens/1.png) ![](screens/2.png) ![](screens/0.png)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
