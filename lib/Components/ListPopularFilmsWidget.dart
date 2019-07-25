@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:movies_app/Components/Colors.dart';
+import 'package:movies_app/Components/MovieDialog.dart';
 
 class ListPopularFilms extends StatefulWidget {
   ListPopularFilmState createState() => new ListPopularFilmState();
@@ -40,17 +41,35 @@ class ListPopularFilmState extends State<ListPopularFilms> {
     }
   }
 
-  DecorationImage getImage(index) {
+  Widget getImage(index) {
     try {
       DecorationImage image = new DecorationImage(
           fit: BoxFit.fill,
           image: NetworkImage(
               'https://image.tmdb.org/t/p/w500' + data[index]['poster_path']));
-      if (image != null) return image;
-      return null;
+      if (image != null)
+        return Container(
+          height: 200,
+          margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+          decoration: BoxDecoration(
+            image: image,
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        );
+      return Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation(Colors.white),
+        ),
+      );
     } catch (e) {
       print(e);
-      return null;
+      return Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation(Colors.white),
+        ),
+      );
     }
   }
 
@@ -71,40 +90,46 @@ class ListPopularFilmState extends State<ListPopularFilms> {
         : ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: data == null ? 0 : data.length,
-            itemBuilder: (context, index) => Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              height: 280,
-              width: MediaQuery.of(context).size.width / 2.5,
-              decoration: BoxDecoration(
-                color: backgroundCard,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
+            itemBuilder: (context, index) => GestureDetector(
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                height: 280,
+                width: MediaQuery.of(context).size.width / 2.5,
+                decoration: BoxDecoration(
+                  color: backgroundCard,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    getImage(index),
+                    ListTile(
+                      title: Text(
+                        data[index]['title'],
+                        style: new TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 15),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Container(
-                    height: 200,
-                    margin: EdgeInsets.only(left: 10, right: 10, top: 10),
-                    decoration: BoxDecoration(
-                      image: getImage(index),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      data[index]['title'],
-                      style: new TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 15),
-                    ),
-                  )
-                ],
-              ),
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (_) => new MovieDialog(
+                        date: data[index]['release_date'],
+                        description: data[index]['overview'],
+                        image: new DecorationImage(
+                            fit: BoxFit.fill  ,
+                            image: NetworkImage(
+                                'https://image.tmdb.org/t/p/w500' +
+                                    data[index]['poster_path'])),
+                                    rate: data[index]['vote_average'].toString(),
+                                    title: data[index]['title'],
+                      )),
             ),
           );
   }

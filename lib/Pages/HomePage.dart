@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/Components/Colors.dart';
 import 'package:movies_app/Components/DarkPainter.dart';
 import 'package:movies_app/Components/ListPopularFilmsWidget.dart';
 
@@ -34,7 +33,7 @@ class HomePageState extends State<HomePage> {
                   ),
                 ),
                 Center(
-                  child: Text('Savollage',
+                  child: Text('Saviollage',
                       style: new TextStyle(
                           fontFamily: 'Comfortaa',
                           color: Colors.white.withOpacity(0.5),
@@ -53,6 +52,7 @@ class HomePageState extends State<HomePage> {
                         prefixIcon: Icon(
                           Icons.search,
                           color: Colors.black,
+
                         ),
                         fillColor: Colors.white,
                         filled: true),
