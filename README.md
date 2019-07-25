@@ -2,7 +2,7 @@
 
 App consumindo a api TheMovieDB para listagem de filmes populares.
 
-![](screens/3.gif){:height="24px" width="48px"}
+![](screens/3.gif)
 
 
 Para este exemplo utilizamos alguns temas importantes do *Flutter*, como por exemplo: 
