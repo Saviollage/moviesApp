@@ -7,6 +7,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -15,6 +16,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Color(0XFF121212),
         body: CustomPaint(
             painter: DarkPainter(),
@@ -42,20 +44,29 @@ class HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: TextFormField(
-                    cursorColor: Colors.deepOrange,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide.none),
-                        hintText: 'Filme',
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.black,
-
-                        ),
-                        fillColor: Colors.white,
-                        filled: true),
+                  child: GestureDetector(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white),
+                      child: ListTile(
+                        leading: Icon(Icons.search),
+                        title: Text('Procurar'),
+                      ),
+                    ),
+                    onTap: () =>
+                        _scaffoldKey.currentState.showSnackBar(new SnackBar(
+                      content: Text('Ainda não implementado', style: new TextStyle(
+                        color: Colors.black
+                      ),),
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.white,
+                      action: SnackBarAction(
+                        label: 'OK',
+                        textColor: Colors.deepOrange,
+                        onPressed: (){},
+                      ),
+                    )),
                   ),
                 ),
                 ListTile(

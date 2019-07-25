@@ -21,8 +21,8 @@ class MovieDialog extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(top: 110, left: 15, bottom: 10, right: 15),
-            margin: EdgeInsets.only(top: 100),
+            padding: EdgeInsets.only(top: 100, left: 15, bottom: 10, right: 15),
+            margin: EdgeInsets.only(top: 90),
             decoration: new BoxDecoration(
               shape: BoxShape.rectangle,
               color: backgroundCard,
@@ -109,9 +109,9 @@ class MovieDialog extends StatelessWidget {
               left: 20,
               right: 20,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 70),
+                padding: EdgeInsets.symmetric(horizontal: 73),
                 child: Container(
-                  height: 200,
+                  height: 185,
                   width: 40,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
